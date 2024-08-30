@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.Random;
 
 public class Parent {
     WebDriverWait wait = new WebDriverWait(GWD.driver, Duration.ofSeconds(10));
@@ -27,5 +29,10 @@ public class Parent {
         Assert.assertTrue(element.getText().toLowerCase().contains(text.toLowerCase()));
     }
 
+    public void randomClick(List<WebElement> element) {
+        Random rnd = new Random();
+        int index = rnd.nextInt(element.size());
+        element.get(index).click();
+    }
 
 }
