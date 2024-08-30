@@ -32,7 +32,7 @@ public class GWD {
 
     @AfterClass
     public void tearDownProcess() throws InterruptedException {
-        wait(3);
+        forceWait(3);
         driver.quit();
     }
 
@@ -47,5 +47,13 @@ public class GWD {
     public void afterMethod(ITestResult result) {
         logger4j.info(result.getName() + " test method finished " + (result.getStatus() == 1 ? " passed " : "fail"));
         logger4j.warn("Warning: Test Finished...");
+    }
+
+    public static void forceWait(int seconds) {
+        try {
+            Thread.sleep(seconds*1000l);
+        }catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
