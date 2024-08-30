@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class ElementsPage extends Parent{
 
     public ElementsPage(){
@@ -19,16 +21,27 @@ public class ElementsPage extends Parent{
 
     @FindBy(linkText = "Demo")
     private WebElement demo;
+
     @FindBy(xpath = "//a[@href=\"#openmrs2\"]")
     private WebElement demo2;
+
     @FindBy(xpath = "//*[text()='Enter the OpenMRS 2 Demo']")
     private WebElement enterMRS2;
+
     @FindBy(id = "username")
     private WebElement userName;
+
     @FindBy(id = "password")
     private WebElement password;
+
     @FindBy(id = "loginButton")
     private WebElement loginBtn;
+
+    @FindBy(css = "ul#sessionLocation>li")
+    private List<WebElement> locationSession;
+
+    @FindBy(css = "#content>div:nth-child(2)")
+    private WebElement loginSuccess;
 
 
 
@@ -59,5 +72,16 @@ public class ElementsPage extends Parent{
     public WebElement getLoginBtn() {
         return loginBtn;
     }
+
+    public List<WebElement> getLocationSession() {
+        return locationSession;
+    }
+
+    public WebElement getLoginSuccess() {
+        return loginSuccess;
+    }
+
+
+
 
 }
