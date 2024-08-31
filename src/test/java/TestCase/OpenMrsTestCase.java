@@ -7,13 +7,11 @@ import org.testng.annotations.Test;
 
 public class OpenMrsTestCase extends GWD {
 
-    @Test
+    @Test(priority = 2)
     public void TC_01(){ //Login test
         ElementsPage ep = new ElementsPage();
         driver.get("https://openmrs.org/");
 
-        ep.myClick(ep.langBar());
-        ep.myClick(ep.English());
         ep.myClick(ep.getDemo());
         ep.myClick(ep.getDemo2());
         ep.myClick(ep.getEnterMRS2());
@@ -39,7 +37,7 @@ public class OpenMrsTestCase extends GWD {
         return data;
     }
 
-    @Test(dataProvider = "userData" )
+    @Test(dataProvider = "userData" , priority = 1)
     public void TC_02(String username , String password){ //Login test negative
 
         ElementsPage ep = new ElementsPage();
@@ -58,6 +56,18 @@ public class OpenMrsTestCase extends GWD {
         }else {
             ep.verifyContainsText(ep.getErrorMsg(),"Invalid");
         }
+    }
+
+    @Test(priority = 3)
+    public void TC_03(){//Logout test
+        ElementsPage ep = new ElementsPage();
+
+        if (driver.getCurrentUrl().equals("data:,")){
+            TC_01();
+        }
+        ep.myClick(ep.getLogout());
+        ep.verifyContainsText(ep.getLogoutSuccess(),"LOGIN");
+
     }
 
 }
