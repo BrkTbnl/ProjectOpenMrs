@@ -58,8 +58,8 @@ public class OpenMrsTestCase extends GWD {
         }
     }
 
-    @Test(priority = 3)
-    public void TC_03(){//Logout test
+    @Test(priority = 10)
+    public void TC_03(){//Logout test it will be last case so last priority
         ElementsPage ep = new ElementsPage();
 
         if (driver.getCurrentUrl().equals("data:,")){
@@ -67,7 +67,47 @@ public class OpenMrsTestCase extends GWD {
         }
         ep.myClick(ep.getLogout());
         ep.verifyContainsText(ep.getLogoutSuccess(),"LOGIN");
+    }
+    // add new patient
+    @Test(dataProvider = "patientData", priority = 4)
+    public void TC_04(String name, String firstName, String day, String year, String address, String city, String country, String phoneNumber){
+
+        ElementsPage ep = new ElementsPage();
+        if (driver.getCurrentUrl().equals("data:,")) {
+            TC_01();
+        }
+        ep.myClick(ep.getRegister());
+        ep.mySendKeys(ep.getName(), name);
+        ep.mySendKeys(ep.getSurname(), firstName);
+        ep.myClick(ep.getNextButton1());
+        ep.myClick(ep.getGender());
+        ep.myClick(ep.getNextButton2());
+        ep.mySendKeys(ep.getDay(), day);
+        ep.myClick(ep.getMonth());
+        ep.mySendKeys(ep.getYear(), year);
+        ep.myClick(ep.getNextButton3());
+        ep.mySendKeys(ep.getAddress(), address);
+        ep.mySendKeys(ep.getCity(), city);
+        ep.mySendKeys(ep.getCountry(), country);
+        ep.myClick(ep.getNextButton4());
+        ep.mySendKeys(ep.getPhone(), phoneNumber);
+        ep.myClick(ep.getNextButton5());
+        ep.myClick(ep.getNextButton6());
+        ep.myClick(ep.getConfirm());
+        ep.verifyContainsText(ep.getAccessMessage(), "Created Patient Record:");
+        ep.myClick(ep.getHomeButton());
 
     }
+
+    @DataProvider
+    public static Object[][] patientData() {
+        return new Object[][]{
+                {"James", "Hetfield", "03", "1963", "Address 1", "Downey", "USA", "+1-555-0101"},
+                {"Lars", "Ulrich", "26", "1963", "Address 2", "Los Angeles", "USA", "+1-555-0202"},
+                {"Kirk", "Hammett", "18", "1962", "Address 3", "San Francisco", "USA", "+1-555-0303"}
+
+        };
+    }
+
 
 }
