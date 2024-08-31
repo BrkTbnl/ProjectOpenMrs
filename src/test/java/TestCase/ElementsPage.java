@@ -55,8 +55,8 @@ public class ElementsPage extends Parent{
     @FindBy(css = "[id= \"apps\"]>a:nth-child(4)")
     public WebElement registerButton;
 
-    @FindBy(xpath = "//input[@id=\"fr4348-field\"]")
-    public WebElement nameInput;
+    @FindBy(xpath = "//input[@name='givenName']")
+    public WebElement name;
 
     @FindBy(xpath = "//input[@name='familyName']")
     private WebElement surname;
@@ -105,6 +105,15 @@ public class ElementsPage extends Parent{
 
     @FindBy(id = "submit")
     private WebElement confirm;
+
+    @FindBy(xpath = "(//p[contains(text(),'Created Patient Record:')])[2]")
+    private WebElement accessMessage;
+
+    @FindBy(css = "[class='icon-user small']")
+    private WebElement userIcon;
+
+    @FindBy(xpath = "//i[@class='icon-home small']")
+    private WebElement homeButton;
 
 
 
@@ -155,7 +164,7 @@ public class ElementsPage extends Parent{
     }
 
     public WebElement getName() {
-        return nameInput;
+        return name;
     }
 
     public WebElement getSurname() {
@@ -221,6 +230,12 @@ public class ElementsPage extends Parent{
     public WebElement getConfirm() {
         return confirm;
     }
+
+    public WebElement getAccessMessage() {return accessMessage;}
+
+    public WebElement getUserIcon() {return userIcon;}
+
+    public WebElement getHomeButton() {return homeButton;}
 
 
 
