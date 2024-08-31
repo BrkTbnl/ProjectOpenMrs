@@ -8,10 +8,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import java.time.Duration;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GWD {
+
+
 
     public static final org.apache.logging.log4j.Logger logger4j = LogManager.getLogger();
 
@@ -20,6 +23,7 @@ public class GWD {
 
     @BeforeClass
     public void setUpProcess() {
+
         Logger logger = Logger.getLogger("");
         logger.setLevel(Level.SEVERE);
 

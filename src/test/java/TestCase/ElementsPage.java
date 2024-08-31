@@ -43,6 +43,14 @@ public class ElementsPage extends Parent{
     @FindBy(css = "#content>div:nth-child(2)")
     private WebElement loginSuccess;
 
+    @FindBy(id = "error-message")
+    private WebElement errorMsg;
+
+    @FindBy(css = "li[class='nav-item logout'] a")
+    private WebElement logout;
+
+    @FindBy(css = ".w-auto")
+    private WebElement logoutSuccess;
 
 
     public WebElement langBar(){return language;}
@@ -80,6 +88,13 @@ public class ElementsPage extends Parent{
     public WebElement getLoginSuccess() {
         return loginSuccess;
     }
+
+    public WebElement getErrorMsg() {return errorMsg; }
+
+    public WebElement getLogout() {return logout;}
+
+    public WebElement getLogoutSuccess() {return  logoutSuccess;}
+
 
 
 
