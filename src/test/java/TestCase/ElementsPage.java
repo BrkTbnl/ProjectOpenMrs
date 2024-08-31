@@ -52,6 +52,61 @@ public class ElementsPage extends Parent{
     @FindBy(css = ".w-auto")
     private WebElement logoutSuccess;
 
+    @FindBy(css = "[id= \"apps\"]>a:nth-child(4)")
+    public WebElement registerButton;
+
+    @FindBy(xpath = "//input[@id=\"fr4348-field\"]")
+    public WebElement nameInput;
+
+    @FindBy(xpath = "//input[@name='familyName']")
+    private WebElement surname;
+
+    @FindBy(xpath = "//icon[@class='fas fa-chevron-right']")
+    private WebElement nextButton1;
+
+    @FindBy(css = "select[id='gender-field']>:nth-child(2)")
+    private WebElement gender;
+
+    @FindBy(xpath = "//icon[@class='fas fa-chevron-right']")
+    private WebElement nextButton2;
+
+    @FindBy(xpath = "//input[@id='birthdateDay-field']")
+    private WebElement day;
+
+    @FindBy(xpath = "//option[text()='February']")
+    private WebElement month;
+
+    @FindBy(xpath = "//input[@id='birthdateYear-field']")
+    private WebElement year;
+
+    @FindBy(xpath = "//button[@id='next-button']/icon")
+    private WebElement nextButton3;
+
+    @FindBy(xpath = "//input[@id='address1']")
+    private WebElement address;
+
+    @FindBy(xpath = "//input[@id='cityVillage']")
+    private WebElement city;
+
+    @FindBy(xpath = "//input[@id='country']")
+    private WebElement country;
+
+    @FindBy(xpath = "//button[@id='next-button']/icon")
+    private WebElement nextButton4;
+
+    @FindBy(xpath = "//input[@name='phoneNumber']")
+    private WebElement phone;
+
+    @FindBy(xpath = "//button[@id='next-button']/icon")
+    private WebElement nextButton5;
+
+    @FindBy(xpath = "//button[@id='next-button']/icon")
+    private WebElement nextButton6;
+
+    @FindBy(id = "submit")
+    private WebElement confirm;
+
+
 
     public WebElement langBar(){return language;}
 
@@ -95,6 +150,77 @@ public class ElementsPage extends Parent{
 
     public WebElement getLogoutSuccess() {return  logoutSuccess;}
 
+    public WebElement getRegister() {
+        return registerButton;
+    }
+
+    public WebElement getName() {
+        return nameInput;
+    }
+
+    public WebElement getSurname() {
+        return surname;
+    }
+
+    public WebElement getNextButton1() {
+        return nextButton1;
+    }
+
+    public WebElement getGender() {
+        return gender;
+    }
+
+    public WebElement getNextButton2() {
+        return nextButton2;
+    }
+
+    public WebElement getDay() {
+        return day;
+    }
+
+    public WebElement getMonth() {
+        return month;
+    }
+
+    public WebElement getYear() {
+        return year;
+    }
+
+    public WebElement getNextButton3() {
+        return nextButton3;
+    }
+
+    public WebElement getAddress() {
+        return address;
+    }
+
+    public WebElement getCity() {
+        return city;
+    }
+
+    public WebElement getCountry() {
+        return country;
+    }
+
+    public WebElement getNextButton4() {
+        return nextButton4;
+    }
+
+    public WebElement getPhone() {
+        return phone;
+    }
+
+    public WebElement getNextButton5() {
+        return nextButton5;
+    }
+
+    public WebElement getNextButton6() {
+        return nextButton6;
+    }
+
+    public WebElement getConfirm() {
+        return confirm;
+    }
 
 
 
