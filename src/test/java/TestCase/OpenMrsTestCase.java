@@ -110,4 +110,22 @@ public class OpenMrsTestCase extends GWD {
     }
 
 
+    @Test(dependsOnMethods = "TC_01", priority = 5)
+    public void TC_05() {  //to reach my acc.
+
+        ElementsPage ep = new ElementsPage();
+        if (driver.getCurrentUrl().equals("data:,")) {
+            TC_01();
+        }
+
+        ep.myClick(ep.getUserIcon());
+        ep.myClick(ep.getMyAccount());
+        ep.myClick(ep.getChangePassword());
+        ep.verifyContainsText(ep.getChangePasswordL(), "Change Password");
+        ep.myClick(ep.getMyAccount2());
+        ep.myClick(ep.getMyLanguages());
+        ep.verifyContainsText(ep.getMyLanguagesL(), "My Languages");
+        ep.myClick(ep.getHomeButton());
+    }
+
 }
