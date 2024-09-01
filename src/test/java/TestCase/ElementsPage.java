@@ -118,11 +118,20 @@ public class ElementsPage extends Parent{
     @FindBy(css = "[href='/openmrs/adminui/myaccount/myAccount.page']")
     private WebElement myAccount;
 
-    @FindBy(xpath = "(//div[@class='task'])[1]")
+    @FindBy(xpath = "(//a[@href='/openmrs/adminui/myaccount/myAccount.page'])[2]")
+    private WebElement myAccount2;
+
+    @FindBy(xpath = "//i[@class=\"icon-lock\"]")
     private WebElement changePassword;
 
-    @FindBy(xpath = "(//div[@class='task'])[2]")
+    @FindBy(xpath = "(//*[contains(text(), \"Change\")])[3]")
+    private WebElement changePasswordLabel;
+
+    @FindBy(xpath = "//i[@class=\"icon-cog\"]")
     private WebElement myLanguages;
+
+    @FindBy(xpath = "(//*[contains(text(), \"Languages\")])[3]")
+    private WebElement myLanguagesL;
 
     @FindBy(xpath = "//div[@id='apps']//a[1]")
     private WebElement searchPatient;
@@ -247,14 +256,19 @@ public class ElementsPage extends Parent{
 
     public WebElement getChangePassword() {return changePassword;}
 
+    public WebElement getChangePasswordL() {return changePasswordLabel;}
+
     public WebElement getMyLanguages() {return myLanguages;}
+
+    public WebElement getMyLanguagesL() {return myLanguagesL;}
+
+    public WebElement getMyAccount() {return myAccount;}
+
+    public WebElement getMyAccount2() {return myAccount2;}
 
     public WebElement getSearchPatient() {return searchPatient;}
 
     public WebElement getSearchPatientBox() {return searchPatientBox;}
-
-    public WebElement getMyAccount() {return myAccount;}
-
 
 
 
