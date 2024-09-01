@@ -1,6 +1,7 @@
 package TestCase;
 
 import Utilities.GWD;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -128,4 +129,18 @@ public class OpenMrsTestCase extends GWD {
         ep.myClick(ep.getHomeButton());
     }
 
+
+    @Test(priority = 6,dependsOnMethods = "TC_01")
+    public void TC_06() { //search patient function
+        ElementsPage ep = new ElementsPage();
+
+        ep.myClick(ep.getSearchPatient());
+        ep.mySendKeys(ep.getSearchPatientBox(),"Kirk Hammett");
+        ep.myClick(ep.getPatientButton());
+        Assert.assertTrue(ep.getNameSuccess().getText().toLowerCase().contains("kirk"));
+        Assert.assertTrue(ep.getSurnameSuccess().getText().toLowerCase().contains("hammett"));
+        ep.myClick(ep.getHomeButton());
+
+
+    }
 }
