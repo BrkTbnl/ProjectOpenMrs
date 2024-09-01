@@ -141,6 +141,17 @@ public class OpenMrsTestCase extends GWD {
         Assert.assertTrue(ep.getSurnameSuccess().getText().toLowerCase().contains("hammett"));
         ep.myClick(ep.getHomeButton());
 
+    }
+
+    @Test(priority = 7,dependsOnMethods = "TC_01")
+    public void TC_07() { //negative test search patient
+        ElementsPage ep = new ElementsPage();
+
+        ep.myClick(ep.getHomeButton());
+        ep.myClick(ep.getSearchPatient());
+        ep.mySendKeys(ep.getSearchPatientBox(),"no name");
+        Assert.assertTrue(ep.getSearchPatientNegativeSuccess().getText().contains("No matching records found"));
+        ep.myClick(ep.getHomeButton());
 
     }
 }
