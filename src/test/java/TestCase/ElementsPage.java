@@ -7,10 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class ElementsPage extends Parent{
+public class ElementsPage extends Parent {
 
-    public ElementsPage(){
-        PageFactory.initElements(GWD.driver,this);
+    public ElementsPage() {
+        PageFactory.initElements(GWD.driver, this);
     }
 
     @FindBy(xpath = "//div[@class=\"gt-current-lang\"]")
@@ -139,6 +139,17 @@ public class ElementsPage extends Parent{
     @FindBy(xpath = "//input[@id='patient-search']")
     private WebElement searchPatientBox;
 
+    @FindBy(xpath = "((//tbody[@role='alert']/tr)[1]/td)[1]")
+    private WebElement patientButton;
+
+    @FindBy(css = ".PersonName-givenName")
+    private WebElement nameSuccess;
+
+    @FindBy(css = ".PersonName-familyName")
+    private WebElement surnameSuccess;
+
+    @FindBy(xpath = "//td[text()='No matching records found']")
+    private WebElement searchPatientNegativeSuccess;
 
     public WebElement getDemo() {
         return demo;
@@ -172,13 +183,21 @@ public class ElementsPage extends Parent{
         return loginSuccess;
     }
 
-    public WebElement getErrorMsg() {return errorMsg; }
+    public WebElement getErrorMsg() {
+        return errorMsg;
+    }
 
-    public WebElement getLogout() {return logout;}
+    public WebElement getLogout() {
+        return logout;
+    }
 
-    public WebElement getLogoutSuccess() {return  logoutSuccess;}
+    public WebElement getLogoutSuccess() {
+        return logoutSuccess;
+    }
 
-    public WebElement getRegister() {return registerButton;}
+    public WebElement getRegister() {
+        return registerButton;
+    }
 
     public WebElement getName() {
         return name;
@@ -248,29 +267,63 @@ public class ElementsPage extends Parent{
         return confirm;
     }
 
-    public WebElement getAccessMessage() {return accessMessage;}
+    public WebElement getAccessMessage() {
+        return accessMessage;
+    }
 
-    public WebElement getUserIcon() {return userIcon;}
+    public WebElement getUserIcon() {
+        return userIcon;
+    }
 
-    public WebElement getHomeButton() {return homeButton;}
+    public WebElement getHomeButton() {
+        return homeButton;
+    }
 
-    public WebElement getChangePassword() {return changePassword;}
+    public WebElement getChangePassword() {
+        return changePassword;
+    }
 
-    public WebElement getChangePasswordL() {return changePasswordLabel;}
+    public WebElement getChangePasswordL() {
+        return changePasswordLabel;
+    }
 
-    public WebElement getMyLanguages() {return myLanguages;}
+    public WebElement getMyLanguages() {
+        return myLanguages;
+    }
 
-    public WebElement getMyLanguagesL() {return myLanguagesL;}
+    public WebElement getMyLanguagesL() {
+        return myLanguagesL;
+    }
 
-    public WebElement getMyAccount() {return myAccount;}
+    public WebElement getMyAccount() {
+        return myAccount;
+    }
 
-    public WebElement getMyAccount2() {return myAccount2;}
+    public WebElement getMyAccount2() {
+        return myAccount2;
+    }
 
-    public WebElement getSearchPatient() {return searchPatient;}
+    public WebElement getSearchPatient() {
+        return searchPatient;
+    }
 
-    public WebElement getSearchPatientBox() {return searchPatientBox;}
+    public WebElement getSearchPatientBox() {
+        return searchPatientBox;
+    }
 
+    public WebElement getSurnameSuccess() {
+        return surnameSuccess;
+    }
 
+    public WebElement getNameSuccess() {
+        return nameSuccess;
+    }
 
+    public WebElement getPatientButton() {
+        return patientButton;
+    }
+    public WebElement getSearchPatientNegativeSuccess() {
+        return searchPatientNegativeSuccess;
+    }
 
 }
