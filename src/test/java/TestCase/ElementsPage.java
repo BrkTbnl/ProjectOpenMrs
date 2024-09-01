@@ -115,11 +115,21 @@ public class ElementsPage extends Parent{
     @FindBy(xpath = "//i[@class='icon-home small']")
     private WebElement homeButton;
 
+    @FindBy(css = "[href='/openmrs/adminui/myaccount/myAccount.page']")
+    private WebElement myAccount;
 
+    @FindBy(xpath = "(//div[@class='task'])[1]")
+    private WebElement changePassword;
 
-    public WebElement langBar(){return language;}
+    @FindBy(xpath = "(//div[@class='task'])[2]")
+    private WebElement myLanguages;
 
-    public WebElement English(){return language2;}
+    @FindBy(xpath = "//div[@id='apps']//a[1]")
+    private WebElement searchPatient;
+
+    @FindBy(xpath = "//input[@id='patient-search']")
+    private WebElement searchPatientBox;
+
 
     public WebElement getDemo() {
         return demo;
@@ -159,9 +169,7 @@ public class ElementsPage extends Parent{
 
     public WebElement getLogoutSuccess() {return  logoutSuccess;}
 
-    public WebElement getRegister() {
-        return registerButton;
-    }
+    public WebElement getRegister() {return registerButton;}
 
     public WebElement getName() {
         return name;
@@ -236,6 +244,17 @@ public class ElementsPage extends Parent{
     public WebElement getUserIcon() {return userIcon;}
 
     public WebElement getHomeButton() {return homeButton;}
+
+    public WebElement getChangePassword() {return changePassword;}
+
+    public WebElement getMyLanguages() {return myLanguages;}
+
+    public WebElement getSearchPatient() {return searchPatient;}
+
+    public WebElement getSearchPatientBox() {return searchPatientBox;}
+
+    public WebElement getMyAccount() {return myAccount;}
+
 
 
 
