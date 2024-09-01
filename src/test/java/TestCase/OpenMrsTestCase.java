@@ -1,6 +1,7 @@
 package TestCase;
 
 import Utilities.GWD;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -9,15 +10,15 @@ import org.testng.annotations.Test;
 public class OpenMrsTestCase extends GWD {
 
     @Test(priority = 2)
-    public void TC_01(){ //Login test
+    public void TC_01() { //Login test
         ElementsPage ep = new ElementsPage();
         driver.get("https://openmrs.org/");
 
         ep.myClick(ep.getDemo());
         ep.myClick(ep.getDemo2());
         ep.myClick(ep.getEnterMRS2());
-        ep.mySendKeys(ep.getUserName(),"Admin");
-        ep.mySendKeys(ep.getPassword(),"Admin123");
+        ep.mySendKeys(ep.getUserName(), "Admin");
+        ep.mySendKeys(ep.getPassword(), "Admin123");
         ep.randomClick(ep.getLocationSession());
         ep.myClick(ep.getLoginBtn());
         ep.verifyContainsText(ep.getLoginSuccess(), "Logged in as");
@@ -38,8 +39,8 @@ public class OpenMrsTestCase extends GWD {
         return data;
     }
 
-    @Test(dataProvider = "userData" , priority = 1)
-    public void TC_02(String username , String password){ //Login test negative
+    @Test(dataProvider = "userData", priority = 1)
+    public void TC_02(String username, String password) { //Login test negative
 
         ElementsPage ep = new ElementsPage();
         driver.get("https://openmrs.org/en");
@@ -47,31 +48,32 @@ public class OpenMrsTestCase extends GWD {
         ep.myClick(ep.getDemo());
         ep.myClick(ep.getDemo2());
         ep.myClick(ep.getEnterMRS2());
-        ep.mySendKeys(ep.getUserName(),username);
-        ep.mySendKeys(ep.getPassword(),password);
+        ep.mySendKeys(ep.getUserName(), username);
+        ep.mySendKeys(ep.getPassword(), password);
         ep.randomClick(ep.getLocationSession());
         ep.myClick(ep.getLoginBtn());
 
-        if (username.equals("Admin") && password.equals("Admin123")){
+        if (username.equals("Admin") && password.equals("Admin123")) {
             ep.verifyContainsText(ep.getLoginSuccess(), "Logged in as");
-        }else {
-            ep.verifyContainsText(ep.getErrorMsg(),"Invalid");
+        } else {
+            ep.verifyContainsText(ep.getErrorMsg(), "Invalid");
         }
     }
 
     @Test(priority = 10)
-    public void TC_03(){//Logout test it will be last case so last priority
+    public void TC_03() {//Logout test it will be last case so last priority
         ElementsPage ep = new ElementsPage();
 
-        if (driver.getCurrentUrl().equals("data:,")){
+        if (driver.getCurrentUrl().equals("data:,")) {
             TC_01();
         }
         ep.myClick(ep.getLogout());
-        ep.verifyContainsText(ep.getLogoutSuccess(),"LOGIN");
+        ep.verifyContainsText(ep.getLogoutSuccess(), "LOGIN");
     }
+
     // add new patient
     @Test(dataProvider = "patientData", priority = 4)
-    public void TC_04(String name, String firstName, String day, String year, String address, String city, String country, String phoneNumber){
+    public void TC_04(String name, String firstName, String day, String year, String address, String city, String country, String phoneNumber) {
 
         ElementsPage ep = new ElementsPage();
         if (driver.getCurrentUrl().equals("data:,")) {
@@ -119,6 +121,7 @@ public class OpenMrsTestCase extends GWD {
             TC_01();
         }
 
+        ep.myHoverOver(ep.getUserIcon());
         ep.myClick(ep.getUserIcon());
         ep.myClick(ep.getMyAccount());
         ep.myClick(ep.getChangePassword());
@@ -130,12 +133,12 @@ public class OpenMrsTestCase extends GWD {
     }
 
 
-    @Test(priority = 6,dependsOnMethods = "TC_01")
+    @Test(priority = 6, dependsOnMethods = "TC_01")
     public void TC_06() { //search patient function
         ElementsPage ep = new ElementsPage();
 
         ep.myClick(ep.getSearchPatient());
-        ep.mySendKeys(ep.getSearchPatientBox(),"Kirk Hammett");
+        ep.mySendKeys(ep.getSearchPatientBox(), "Kirk Hammett");
         ep.myClick(ep.getPatientButton());
         Assert.assertTrue(ep.getNameSuccess().getText().toLowerCase().contains("kirk"));
         Assert.assertTrue(ep.getSurnameSuccess().getText().toLowerCase().contains("hammett"));
@@ -143,15 +146,34 @@ public class OpenMrsTestCase extends GWD {
 
     }
 
-    @Test(priority = 7,dependsOnMethods = "TC_01")
+    @Test(priority = 7, dependsOnMethods = "TC_01")
     public void TC_07() { //negative test search patient
         ElementsPage ep = new ElementsPage();
 
         ep.myClick(ep.getHomeButton());
         ep.myClick(ep.getSearchPatient());
-        ep.mySendKeys(ep.getSearchPatientBox(),"no name");
+        ep.mySendKeys(ep.getSearchPatientBox(), "no name");
         Assert.assertTrue(ep.getSearchPatientNegativeSuccess().getText().contains("No matching records found"));
         ep.myClick(ep.getHomeButton());
+    }
 
+    @Test(dependsOnMethods = "TC_01", priority = 8)
+    public void TC_08() { //delete patient
+
+        ElementsPage ep = new ElementsPage();
+        ep.myClick(ep.getSearchPatient());
+        ep.mySendKeys(ep.getSearchPatientBox(), "Kirk Hammett");
+        ep.myClick(ep.getPatientButton());
+
+        String id = ep.getPatientId().getText();
+        ep.myClick(ep.getDeletePatient());
+        ep.mySendKeys(ep.getDeleteReason(),"no reason");
+        ep.myClick(ep.getConfirmButton());
+
+        wait.until(ExpectedConditions.visibilityOf(ep.getSearchPatientBox()));
+
+        ep.mySendKeys(ep.getSearchPatientBox(),id);
+        Assert.assertTrue(ep.getSearchPatientNegativeSuccess().getText().contains("No matching records found"));
+        ep.myClick(ep.getHomeButton());
     }
 }
