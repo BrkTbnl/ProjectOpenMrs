@@ -151,6 +151,24 @@ public class ElementsPage extends Parent {
     @FindBy(xpath = "//td[text()='No matching records found']")
     private WebElement searchPatientNegativeSuccess;
 
+    @FindBy(css = "div[id='patient-search-results-table_paginate'] >span>a[tabindex]")
+    private List<WebElement> pageNumber;
+
+    @FindBy(css = "tbody[role='alert']>tr")
+    private List<WebElement> pageRows;
+
+    @FindBy(xpath = "(//a[@class='float-left'])[8]")
+    private WebElement deletePatient;
+
+    @FindBy(xpath = "//input[@id='delete-reason']")
+    private WebElement deleteReason;
+
+    @FindBy(xpath = "(//div[@id='simplemodal-container']//button)[1]")
+    private WebElement confirmButton;
+
+    @FindBy(xpath = "//div[@class='float-sm-right']/span")
+    private WebElement patientId;
+
     public WebElement getDemo() {
         return demo;
     }
@@ -326,4 +344,26 @@ public class ElementsPage extends Parent {
         return searchPatientNegativeSuccess;
     }
 
+    public List<WebElement> getPageNumber() {
+        return pageNumber;
+    }
+
+    public List<WebElement> getPageRows() {
+        return pageRows;
+    }
+
+    public WebElement getDeletePatient() {
+        return deletePatient;
+    }
+
+    public WebElement getDeleteReason() {
+        return deleteReason;
+    }
+
+    public WebElement getConfirmButton() {
+        return confirmButton;
+    }
+    public WebElement getPatientId() {
+        return patientId;
+    }
 }
