@@ -202,7 +202,26 @@ public class ElementsPage extends Parent {
     @FindBy(xpath = "(//div[@class='float-sm-right']/span)[2]")
     private WebElement MergePatientId2;
 
+    @FindBy(xpath = "//div[@id='apps']//a[5]")
+    private WebElement appointmentScheduling;
 
+    @FindBy(xpath = "(//div[@id='apps']//a)[3]")
+    private WebElement manageAppointments;
+
+    @FindBy(css = "[class=\"text\"] p")
+    private WebElement alertText;
+
+
+
+    public WebElement getAppointmentScheduling() {return appointmentScheduling;}
+
+    public WebElement getManageAppointments() {
+        return manageAppointments;
+    }
+
+    public WebElement getAlertText() {
+        return alertText;
+    }
 
 
     public WebElement getMergePatientId1() {
