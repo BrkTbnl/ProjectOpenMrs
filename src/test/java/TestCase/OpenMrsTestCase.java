@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class OpenMrsTestCase extends GWD {
 
-    @Test(priority = 2)
+    @Test(priority = 2, groups = {"Smoke Test"})
     public void TC_01() { //Login test
         ElementsPage ep = new ElementsPage();
         driver.get("https://openmrs.org/");
@@ -39,7 +39,7 @@ public class OpenMrsTestCase extends GWD {
         return data;
     }
 
-    @Test(dataProvider = "userData", priority = 1)
+    @Test(dataProvider = "userData", priority = 1, groups = {"Smoke Test"})
     public void TC_02(String username, String password) { //Login test negative
 
         ElementsPage ep = new ElementsPage();
@@ -60,7 +60,7 @@ public class OpenMrsTestCase extends GWD {
         }
     }
 
-    @Test(priority = 99)
+    @Test(priority = 99, groups = {"Smoke Test"})
     public void TC_03() {//Logout test it will be last case so last priority
         ElementsPage ep = new ElementsPage();
 
@@ -72,7 +72,7 @@ public class OpenMrsTestCase extends GWD {
     }
 
     // add new patient
-    @Test(dataProvider = "patientData", priority = 4)
+    @Test(dataProvider = "patientData", priority = 4, groups = {"Smoke Test"})
     public void TC_04(String name, String firstName, String day, String year, String address, String city, String country, String phoneNumber) {
 
         ElementsPage ep = new ElementsPage();
@@ -113,7 +113,7 @@ public class OpenMrsTestCase extends GWD {
     }
 
 
-    @Test(dependsOnMethods = "TC_01", priority = 5)
+    @Test(dependsOnMethods = "TC_01", priority = 5, groups = {"Smoke Test"})
     public void TC_05() {  //to reach my acc.
 
         ElementsPage ep = new ElementsPage();
@@ -135,7 +135,7 @@ public class OpenMrsTestCase extends GWD {
     }
 
 
-    @Test(priority = 6, dependsOnMethods = "TC_01")
+    @Test(priority = 6, dependsOnMethods = "TC_01", groups = {"Smoke Test"})
     public void TC_06() { //search patient function
         ElementsPage ep = new ElementsPage();
 
@@ -148,7 +148,7 @@ public class OpenMrsTestCase extends GWD {
 
     }
 
-    @Test(priority = 7, dependsOnMethods = "TC_01")
+    @Test(priority = 7, dependsOnMethods = "TC_01", groups = {"Smoke Test"})
     public void TC_07() { //negative test search patient
         ElementsPage ep = new ElementsPage();
 
@@ -158,7 +158,7 @@ public class OpenMrsTestCase extends GWD {
         ep.myClick(ep.getHomeButton());
     }
 
-    @Test(dependsOnMethods = "TC_01", priority = 8)
+    @Test(dependsOnMethods = "TC_01", priority = 8, groups = {"Smoke Test"})
     public void TC_08() { //delete patient
 
         ElementsPage ep = new ElementsPage();
@@ -178,7 +178,7 @@ public class OpenMrsTestCase extends GWD {
         ep.myClick(ep.getHomeButton());
     }
 
-    @Test(dependsOnMethods = "TC_01", priority = 9)
+    @Test(dependsOnMethods = "TC_01", priority = 9, groups = {"Smoke Test"})
     public void TC_09(){ //listing patients
         ElementsPage ep = new ElementsPage();
         ep.myClick(ep.getSearchPatient());
@@ -199,7 +199,7 @@ public class OpenMrsTestCase extends GWD {
         ep.myClick(ep.getHomeButton());
     }
 
-    @Test(dependsOnMethods = "TC_01", priority = 10)
+    @Test(dependsOnMethods = "TC_01", priority = 10, groups = {"Smoke Test"})
     public void TC_10() { //merging patients
         ElementsPage ep = new ElementsPage();
 
@@ -233,10 +233,13 @@ public class OpenMrsTestCase extends GWD {
 
     }
 
-    @Test(priority = 11, dependsOnMethods = "TC_01")
+    @Test(priority = 11, dependsOnMethods = "TC_01", groups = {"Smoke Test"})
     public void TC_11() { //appointment with invalid time
 
         ElementsPage ep = new ElementsPage();
+        if (!ep.getAppointmentScheduling().isDisplayed()){
+            ep.myClick(ep.getHomeButton());
+        }
         ep.myClick(ep.getAppointmentScheduling());
         ep.myClick(ep.getManageAppointments());
         ep.mySendKeys(ep.getSearchPatientBox(), "lars ulrich");
