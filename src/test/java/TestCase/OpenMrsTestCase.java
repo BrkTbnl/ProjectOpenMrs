@@ -121,6 +121,8 @@ public class OpenMrsTestCase extends GWD {
             TC_01();
         }
 
+        System.out.println(driver.getCurrentUrl());
+
         ep.myHoverOver(ep.getUserIcon());
         ep.myClick(ep.getUserIcon());
         ep.myClick(ep.getMyAccount());
@@ -174,6 +176,27 @@ public class OpenMrsTestCase extends GWD {
 
         ep.mySendKeys(ep.getSearchPatientBox(),id);
         Assert.assertTrue(ep.getSearchPatientNegativeSuccess().getText().contains("No matching records found"));
+        ep.myClick(ep.getHomeButton());
+    }
+
+    @Test(dependsOnMethods = "TC_01")
+    public void TC_09(){ //listing patients
+        ElementsPage ep = new ElementsPage();
+        ep.myClick(ep.getSearchPatient());
+        String fullText = ep.getShowingEntries().getText();
+        String[] words = fullText.split(" ");
+        int totalEntries = Integer.parseInt(words[words.length-2]);
+        System.out.println("total entries: " + totalEntries);
+
+        int pageNumber = ep.getPageNumber().size();
+        int rowNumber = 0;
+
+        for (int i = 0; i < pageNumber; i++) {
+            ep.getPageNumber().get(i).click();
+            rowNumber += ep.getPageRows().size();
+        }
+
+        System.out.println("total rows: " + rowNumber);
         ep.myClick(ep.getHomeButton());
     }
 }
