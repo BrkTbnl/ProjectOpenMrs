@@ -169,6 +169,9 @@ public class ElementsPage extends Parent {
     @FindBy(xpath = "//div[@class='float-sm-right']/span")
     private WebElement patientId;
 
+    @FindBy(id = "patient-search-results-table_info")
+    private WebElement showingEntries;
+
     public WebElement getDemo() {
         return demo;
     }
@@ -365,5 +368,9 @@ public class ElementsPage extends Parent {
     }
     public WebElement getPatientId() {
         return patientId;
+    }
+
+    public WebElement getShowingEntries() {
+        return showingEntries;
     }
 }
