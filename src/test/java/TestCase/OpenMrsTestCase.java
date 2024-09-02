@@ -60,7 +60,7 @@ public class OpenMrsTestCase extends GWD {
         }
     }
 
-    @Test(priority = 10)
+    @Test(priority = 99)
     public void TC_03() {//Logout test it will be last case so last priority
         ElementsPage ep = new ElementsPage();
 
@@ -152,7 +152,6 @@ public class OpenMrsTestCase extends GWD {
     public void TC_07() { //negative test search patient
         ElementsPage ep = new ElementsPage();
 
-        ep.myClick(ep.getHomeButton());
         ep.myClick(ep.getSearchPatient());
         ep.mySendKeys(ep.getSearchPatientBox(), "no name");
         Assert.assertTrue(ep.getSearchPatientNegativeSuccess().getText().contains("No matching records found"));
@@ -179,7 +178,7 @@ public class OpenMrsTestCase extends GWD {
         ep.myClick(ep.getHomeButton());
     }
 
-    @Test(dependsOnMethods = "TC_01")
+    @Test(dependsOnMethods = "TC_01", priority = 9)
     public void TC_09(){ //listing patients
         ElementsPage ep = new ElementsPage();
         ep.myClick(ep.getSearchPatient());
@@ -198,5 +197,39 @@ public class OpenMrsTestCase extends GWD {
 
         System.out.println("total rows: " + rowNumber);
         ep.myClick(ep.getHomeButton());
+    }
+
+    @Test(dependsOnMethods = "TC_01", priority = 10)
+    public void TC_10() { //merging patients
+        ElementsPage ep = new ElementsPage();
+
+        ep.myClick(ep.getSearchPatient());
+        ep.mySendKeys(ep.getSearchPatientBox(), "Lars Ulrich");
+
+        ep.myClick(ep.getPatientButton());
+        String id1 = ep.getPatientId().getText();
+        ep.myClick(ep.getHomeButton());
+
+        ep.myClick(ep.getSearchPatient());
+        ep.mySendKeys(ep.getSearchPatientBox(), "James Hetfield");
+
+        ep.myClick(ep.getPatientButton());
+        String id2 = ep.getPatientId().getText();
+        ep.myClick(ep.getHomeButton());
+
+        ep.myClick(ep.getDataManagement());
+        ep.myClick(ep.getMergePatient());
+        ep.mySendKeys(ep.getPatient1(), id1);
+        ep.mySendKeys(ep.getPatient2(), id2);
+        ep.myClick(ep.getPatientSearchClick());
+
+        ep.myClick(ep.getContinueButton());
+        ep.verifyContainsText(ep.getMergindSuccess(), "Merging cannot be undone");
+        ep.myClick(ep.getClickPatient());
+        ep.myClick(ep.getContinueButton());
+        ep.verifyContainsText(ep.getMergePatientId1(), id1);
+        ep.verifyContainsText(ep.getMergePatientId2(), id2);
+        ep.myClick(ep.getHomeButton());
+
     }
 }
