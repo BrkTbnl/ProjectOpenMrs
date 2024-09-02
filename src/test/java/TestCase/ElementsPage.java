@@ -172,6 +172,79 @@ public class ElementsPage extends Parent {
     @FindBy(id = "patient-search-results-table_info")
     private WebElement showingEntries;
 
+    @FindBy(xpath = "//div[@id='apps']//a[7]")
+    private WebElement dataManagement;
+
+    @FindBy(xpath = "//div[@id='tasks']//a")
+    private WebElement mergePatient;
+
+    @FindBy(id = "patient1-text")
+    private WebElement patient1;
+
+    @FindBy(id = "patient2-text")
+    private WebElement patient2;
+
+    @FindBy(id = "patient-search")
+    private WebElement patientSearchClick;
+
+    @FindBy(id = "confirm-button")
+    private WebElement continueButton;
+
+    @FindBy(id = "first-patient")
+    private WebElement clickPatient;
+
+    @FindBy(xpath = "//h1[contains(text(),'Merging cannot be undone!')]")
+    private WebElement mergindSuccess;
+
+    @FindBy(xpath = "(//div[@class='float-sm-right']/span)[1]")
+    private WebElement MergePatientId1;
+
+    @FindBy(xpath = "(//div[@class='float-sm-right']/span)[2]")
+    private WebElement MergePatientId2;
+
+
+
+
+    public WebElement getMergePatientId1() {
+        return MergePatientId1;
+    }
+
+    public WebElement getMergePatientId2() {
+        return MergePatientId2;
+    }
+
+    public WebElement getClickPatient() {
+        return clickPatient;
+    }
+
+    public WebElement getMergindSuccess() {
+        return mergindSuccess;
+    }
+
+    public WebElement getContinueButton() {
+        return continueButton;
+    }
+
+    public WebElement getPatientSearchClick() {
+        return patientSearchClick;
+    }
+
+    public WebElement getMergePatient() {
+        return mergePatient;
+    }
+
+    public WebElement getDataManagement() {
+        return dataManagement;
+    }
+
+    public WebElement getPatient1() {
+        return patient1;
+    }
+
+    public WebElement getPatient2() {
+        return patient2;
+    }
+
     public WebElement getDemo() {
         return demo;
     }
@@ -343,6 +416,7 @@ public class ElementsPage extends Parent {
     public WebElement getPatientButton() {
         return patientButton;
     }
+
     public WebElement getSearchPatientNegativeSuccess() {
         return searchPatientNegativeSuccess;
     }
@@ -366,6 +440,7 @@ public class ElementsPage extends Parent {
     public WebElement getConfirmButton() {
         return confirmButton;
     }
+
     public WebElement getPatientId() {
         return patientId;
     }
