@@ -232,4 +232,17 @@ public class OpenMrsTestCase extends GWD {
         ep.myClick(ep.getHomeButton());
 
     }
+
+    @Test(priority = 11, dependsOnMethods = "TC_01")
+    public void TC_11() { //appointment with invalid time
+
+        ElementsPage ep = new ElementsPage();
+        ep.myClick(ep.getAppointmentScheduling());
+        ep.myClick(ep.getManageAppointments());
+        ep.mySendKeys(ep.getSearchPatientBox(), "lars ulrich");
+        ep.myClick(ep.getPatientButton());
+        ep.verifyContainsText(ep.getAlertText(), "Your computer is not set to the right time zone.");
+        ep.myClick(ep.getHomeButton());
+
+    }
 }
