@@ -2,13 +2,11 @@ package Utilities;
 
 import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import java.time.Duration;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -50,13 +48,13 @@ public class GWD {
 
     @AfterMethod
     public void afterMethod(ITestResult result) {
-        logger4j.info(result.getName() + " test method finished " + (result.getStatus() == 1 ? " passed " : "fail"));
+        logger4j.info("{} test method finished {}", result.getName(), result.getStatus() == 1 ? " passed " : "fail");
         logger4j.warn("Warning: Test Finished...");
     }
 
     public static void forceWait(int seconds) {
         try {
-            Thread.sleep(seconds*1000l);
+            Thread.sleep(seconds* 1000L);
         }catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
